@@ -1,4 +1,4 @@
-double rcpp_add(NumericVector v);
+double rcpp_add(Rcpp::NumericVector v);
 
 NumericVector apply_cpp_col(NumericMatrix x );
 
