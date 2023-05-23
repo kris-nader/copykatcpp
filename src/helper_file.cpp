@@ -16,7 +16,7 @@ double rcpp_add(Rcpp::NumericVector v){
 Rcpp::NumericVector apply_cpp_col(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.ncol());
     for ( int i=0; i<x.ncol();i++){
-        int temp=rcpp_add(x(_,i));
+        int temp=rcpp_add(x(Rcpp::_,i));
         if ( temp >=1){
             output[i]=temp;
         }
@@ -32,7 +32,7 @@ Rcpp::NumericVector apply_cpp_col(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_row_der(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
-        double temp=rcpp_add(x(i,_));
+        double temp=rcpp_add(x(i,Rcpp::_));
         output[i]=temp/x.ncol();
     }
     return output;
@@ -55,9 +55,9 @@ Rcpp::DataFrame apply_cpp_col_norm(Rcpp::NumericMatrix x ) {
     int num_vars = x.ncol();
     Rcpp::List long_list(num_vars);
     for ( int i=0; i<x.ncol();i++){
-        double temp=rcpp_sum(x(_,i));
+        double temp=rcpp_sum(x(Rcpp::_,i));
         Rcpp::NumericVector t=rep(temp/x.rows(),x.rows());
-        Rcpp::NumericVector temp_vec=NumericVector(x(_,i))-NumericVector(t);
+        Rcpp::NumericVector temp_vec=Rcpp::NumericVector(x(_,i))-Rcpp::NumericVector(t);
         long_list[i]=temp_vec;
     }
     return long_list;
@@ -76,7 +76,7 @@ double cpp_med(Rcpp::NumericVector x){
 Rcpp::NumericVector apply_cpp_row_basel(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
-        double temp=cpp_med(x(i,_));
+        double temp=cpp_med(x(i,Rcpp::_));
         output[i]=temp;
     }
     return output;
@@ -90,7 +90,7 @@ Rcpp::NumericVector apply_cpp_row_basel(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_row_DR2(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
-        double temp=rcpp_add(x(i,_))/x.ncol();
+        double temp=rcpp_add(x(i,Rcpp::_))/x.ncol();
         output[i]=temp;
     }
     return output;
@@ -102,7 +102,7 @@ Rcpp::NumericVector apply_cpp_row_DR2(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_row_temp(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
-        double temp=rcpp_sum(x(i,_))/x.ncol();
+        double temp=rcpp_sum(x(i,Rcpp::_))/x.ncol();
         output[i]=temp;
     }
     return output;
@@ -114,7 +114,7 @@ Rcpp::NumericVector apply_cpp_row_temp(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_row_cfh(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
-        double temp=sd(x(i,_));
+        double temp=sd(x(i,Rcpp::_));
         output[i]=temp;
     }
     return output;
@@ -125,7 +125,7 @@ Rcpp::NumericVector apply_cpp_row_cfh(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_row_base(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
-        double temp=mean(x(i,_));
+        double temp=mean(x(iRcpp::,_));
         output[i]=temp;
     }
     return output;
@@ -136,7 +136,7 @@ Rcpp::NumericVector apply_cpp_row_base(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_col_tempa(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.ncol());
     for ( int i=0; i<x.ncol();i++){
-        double temp=mean(x(_,i));
+        double temp=mean(x(Rcpp::_,i));
         output[i]=temp;
     }
     return output;
@@ -148,7 +148,7 @@ Rcpp::NumericVector apply_cpp_col_tempa(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_col_aj(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.ncol());
     for ( int i=0; i<x.ncol();i++){
-        double temp=cpp_med(x(_,i));
+        double temp=cpp_med(x(Rcpp::_,i));
         output[i]=temp;
     }
     return output;
