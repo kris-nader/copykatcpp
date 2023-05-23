@@ -1,5 +1,6 @@
 #include <Rcpp.h>
 using namespace Rcpp;
+
 //genes.raw <- apply(rawmat, 2, function(x)(sum(x>0)))
 // [[Rcpp::export]]
 double rcpp_add(NumericVector v){
