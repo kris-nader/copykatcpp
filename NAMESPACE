@@ -1,1 +1,1 @@
-exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, sourceCpp)
