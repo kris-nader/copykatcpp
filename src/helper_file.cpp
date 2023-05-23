@@ -57,7 +57,7 @@ Rcpp::DataFrame apply_cpp_col_norm(Rcpp::NumericMatrix x ) {
     for ( int i=0; i<x.ncol();i++){
         double temp=rcpp_sum(x(Rcpp::_,i));
         Rcpp::NumericVector t=Rcpp::rep(temp/x.rows(),x.rows());
-        Rcpp::NumericVector temp_vec=Rcpp::NumericVector(x(_,i))-Rcpp::NumericVector(t);
+        Rcpp::NumericVector temp_vec=Rcpp::NumericVector(x(Rcpp::_,i))-Rcpp::NumericVector(t);
         long_list[i]=temp_vec;
     }
     return long_list;
@@ -125,7 +125,7 @@ Rcpp::NumericVector apply_cpp_row_cfh(Rcpp::NumericMatrix x ) {
 Rcpp::NumericVector apply_cpp_row_base(Rcpp::NumericMatrix x ) {
     Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
-        double temp=mean(x(iRcpp::,_));
+        double temp=mean(x(i,Rcpp::_));
         output[i]=temp;
     }
     return output;
