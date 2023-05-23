@@ -14,7 +14,7 @@ double rcpp_add(Rcpp::NumericVector v){
 
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_col(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.ncol());
+    Rcpp::NumericVector output(x.ncol());
     for ( int i=0; i<x.ncol();i++){
         int temp=rcpp_add(x(_,i));
         if ( temp >=1){
@@ -30,7 +30,7 @@ Rcpp::NumericVector apply_cpp_col(Rcpp::NumericMatrix x ) {
 // der<- apply(rawmat,1,function(x)(sum(x>0)))/ncol(rawmat)
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_row_der(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.nrow());
+    Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
         double temp=rcpp_add(x(i,_));
         output[i]=temp/x.ncol();
@@ -53,11 +53,11 @@ double rcpp_sum(Rcpp::NumericVector v){
 // [[Rcpp::export]]
 Rcpp::DataFrame apply_cpp_col_norm(Rcpp::NumericMatrix x ) {
     int num_vars = x.ncol();
-    List long_list(num_vars);
+    Rcpp::List long_list(num_vars);
     for ( int i=0; i<x.ncol();i++){
         double temp=rcpp_sum(x(_,i));
-        NumericVector t=rep(temp/x.rows(),x.rows());
-        NumericVector temp_vec=NumericVector(x(_,i))-NumericVector(t);
+        Rcpp::NumericVector t=rep(temp/x.rows(),x.rows());
+        Rcpp::NumericVector temp_vec=NumericVector(x(_,i))-NumericVector(t);
         long_list[i]=temp_vec;
     }
     return long_list;
@@ -74,7 +74,7 @@ double cpp_med(Rcpp::NumericVector x){
 
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_row_basel(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.nrow());
+    Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
         double temp=cpp_med(x(i,_));
         output[i]=temp;
@@ -88,7 +88,7 @@ Rcpp::NumericVector apply_cpp_row_basel(Rcpp::NumericMatrix x ) {
 //DR2 <- apply(rawmat3,1,function(x)(sum(x>0)))/ncol(rawmat3)
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_row_DR2(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.nrow());
+    Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
         double temp=rcpp_add(x(i,_))/x.ncol();
         output[i]=temp;
@@ -100,7 +100,7 @@ Rcpp::NumericVector apply_cpp_row_DR2(Rcpp::NumericMatrix x ) {
 //temp=apply(uber.mat.adj[,which(com.pred=="diploid")], 1, mean)
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_row_temp(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.nrow());
+    Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
         double temp=rcpp_sum(x(i,_))/x.ncol();
         output[i]=temp;
@@ -112,7 +112,7 @@ Rcpp::NumericVector apply_cpp_row_temp(Rcpp::NumericMatrix x ) {
 //cf.h <- apply(results.com.rat.norm, 1, sd)
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_row_cfh(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.nrow());
+    Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
         double temp=sd(x(i,_));
         output[i]=temp;
@@ -123,7 +123,7 @@ Rcpp::NumericVector apply_cpp_row_cfh(Rcpp::NumericMatrix x ) {
 //base <- apply(results.com.rat.norm, 1, mean)
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_row_base(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.nrow());
+    Rcpp::NumericVector output(x.nrow());
     for ( int i=0; i<x.nrow();i++){
         double temp=mean(x(i,_));
         output[i]=temp;
@@ -134,7 +134,7 @@ Rcpp::NumericVector apply_cpp_row_base(Rcpp::NumericMatrix x ) {
 //temp_a=apply(adj.results,2,mean))
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_col_tempa(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.ncol());
+    Rcpp::NumericVector output(x.ncol());
     for ( int i=0; i<x.ncol();i++){
         double temp=mean(x(_,i));
         output[i]=temp;
@@ -146,7 +146,7 @@ Rcpp::NumericVector apply_cpp_col_tempa(Rcpp::NumericMatrix x ) {
 //Aj <- apply(RNA[which(RNA.mat$hgnc_symbol %in% shr), ], 2, median)
 // [[Rcpp::export]]
 Rcpp::NumericVector apply_cpp_col_aj(Rcpp::NumericMatrix x ) {
-    NumericVector output(x.ncol());
+    Rcpp::NumericVector output(x.ncol());
     for ( int i=0; i<x.ncol();i++){
         double temp=cpp_med(x(_,i));
         output[i]=temp;
