@@ -1,5 +1,4 @@
-#include <Rcpp.h>
-using namespace Rcpp;
+#include <helper_file_Rcpp.h>
 
 //genes.raw <- apply(rawmat, 2, function(x)(sum(x>0)))
 // [[Rcpp::export]]
