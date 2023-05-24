@@ -13,7 +13,7 @@ double rcpp_add(Rcpp::NumericVector v){
 }
 
 // [[Rcpp::export]]
-Rcpp::NumericVector apply_cpp_col(Rcpp::NumericMatrix x ) {
+Rcpp::NumericVector apply_cpp_col(Rcpp::NumericMatrix x){
     Rcpp::NumericVector output(x.ncol());
     for ( int i=0; i<x.ncol();i++){
         int temp=rcpp_add(x(Rcpp::_,i));
