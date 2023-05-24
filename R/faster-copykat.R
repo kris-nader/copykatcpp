@@ -14,7 +14,7 @@
 ## modified copykat::copykat
 
 rcpp_copykat <- function(rawmat=rawdata, id.type="S", cell.line="no", ngene.chr=5,LOW.DR=0.05, UP.DR=0.1, win.size=25, norm.cell.names="", KS.cut=0.1, sam.name="", distance="euclidean", output.seg="FALSE", plot.genes="TRUE", genome="hg20", n.cores=1){
-    sourceCpp("helper_file.cpp")
+    Rcpp::sourceCpp("helper_file.cpp")
     start_time <- Sys.time()
     set.seed(1234)
     sample.name <- paste(sam.name,"_copykat_", sep="")
