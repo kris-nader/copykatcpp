@@ -12,7 +12,7 @@
 
 
 ## modified copykat::copykat
-# [[Rcpp::export]]
+
 rcpp_copykat <- function(rawmat=rawdata, id.type="S", cell.line="no", ngene.chr=5,LOW.DR=0.05, UP.DR=0.1, win.size=25, norm.cell.names="", KS.cut=0.1, sam.name="", distance="euclidean", output.seg="FALSE", plot.genes="TRUE", genome="hg20", n.cores=1){
 
     start_time <- Sys.time()
