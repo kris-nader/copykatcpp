@@ -532,7 +532,6 @@ rcpp_copykat <- function(rawmat=rawdata, id.type="S", cell.line="no", ngene.chr=
 
 
 ## modified copykat::convert.all.bins.hg20
-# [[Rcpp::export]]
 rcpp_convert.all.bins.hg20 <- function(DNA.mat, RNA.mat, n.cores){
     ##make list obj for each window
     DNA <- DNA.mat[-which(DNA.mat$chrom==24),]; dim(DNA)
@@ -598,7 +597,6 @@ rcpp_convert.all.bins.hg20 <- function(DNA.mat, RNA.mat, n.cores){
 }
 
 # modified copykat::rcpp_CNA.MCMC
-# [[Rcpp::export]]
 rcpp_CNA.MCMC <- function(clu,fttmat, bins, cut.cor, n.cores){
 
     CON<- NULL
